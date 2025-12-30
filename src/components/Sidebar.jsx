@@ -6,11 +6,20 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const location = useLocation();
+
+  // Função auxiliar para verificar se o link está ativo
+  const isActive = (path) => {
+    return location.pathname === path
+      ? "bg-blue-600 text-white shadow-lg shadow-blue-900/50"
+      : "text-slate-400 hover:text-white hover:bg-slate-800";
+  };
+
   return (
-    <aside className="w-64 bg-slate-900 text-white min-h-screen flex flex-col fixed left-0 top-0">
+    <aside className="w-64 bg-slate-900 text-white min-h-screen flex flex-col fixed left-0 top-0 z-50">
       <div className="p-6 border-b border-slate-800">
         <h1 className="text-2xl font-bold text-blue-500">
           Nexus<span className="text-white">Admin</span>
@@ -24,7 +33,9 @@ const Sidebar = () => {
 
         <Link
           to="/"
-          className="flex items-center gap-3 p-3 bg-blue-600 rounded-lg text-white shadow-lg shadow-blue-900/50 transition"
+          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${isActive(
+            "/"
+          )}`}
         >
           <LayoutDashboard size={20} />
           <span>Dashboard</span>
@@ -32,7 +43,9 @@ const Sidebar = () => {
 
         <Link
           to="/products"
-          className="flex items-center gap-3 p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition"
+          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${isActive(
+            "/products"
+          )}`}
         >
           <ShoppingBag size={20} />
           <span>Produtos</span>
@@ -40,7 +53,9 @@ const Sidebar = () => {
 
         <Link
           to="/customers"
-          className="flex items-center gap-3 p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition"
+          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${isActive(
+            "/customers"
+          )}`}
         >
           <Users size={20} />
           <span>Clientes</span>
@@ -52,7 +67,9 @@ const Sidebar = () => {
           </p>
           <Link
             to="/settings"
-            className="flex items-center gap-3 p-3 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition"
+            className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-200 ${isActive(
+              "/settings"
+            )}`}
           >
             <Settings size={20} />
             <span>Configurações</span>
@@ -61,7 +78,10 @@ const Sidebar = () => {
       </nav>
 
       <div className="p-4 border-t border-slate-800">
-        <button className="flex items-center gap-3 text-red-400 hover:text-red-300 transition w-full p-2">
+        <button
+          onClick={() => alert("Simulação de Logout realizada!")}
+          className="flex items-center gap-3 text-red-400 hover:text-red-300 hover:bg-slate-800/50 transition w-full p-3 rounded-lg"
+        >
           <LogOut size={20} />
           <span>Sair</span>
         </button>
