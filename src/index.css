@@ -1,3 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  @apply bg-slate-50 text-slate-900;
+  /* Fundo com gradiente sutil e moderno */
+  background: radial-gradient(circle at top left, #eef2ff, #f8fafc, #f0f9ff);
+  min-height: 100vh;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
